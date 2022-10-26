@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<factions>
+	<!-- TODO: this list of faction names is shown in New campaign menu UI if faction control is enabled -->
+	<!-- change to fit with your idea of factions in the mod -->
+
+	<faction name="Greenbelts" />
+	<faction name="Greycollars" />
+	<faction name="Brownpants" />
+</factions>
