@@ -1,0 +1,18 @@
+{
+    "command": [
+        {
+            "class": "start_script",
+            "script": "start_rotator.as",
+            "package": "media/packages/invasion_rotator",
+            "Children": "@dictionary of parameters, will be passed to script if entry of script is main(dictionary@ inputData)",
+            "description": "运行脚本,如果脚本main函数入口接受dictionary@参数，则传入Children参数字典"
+        },
+        {
+            "class": "create_instance",
+            "instance_class": "grenade",
+            "instance_key": "emp_blast.projectile",
+            "position": "124.12 333.24 42.12",
+            "description": "生成实例"
+        }
+    ]
+}
