@@ -2,10 +2,13 @@
 #include "helpers.as"
 #include "query_helpers.as"
 
+#include "create_instance.as"
+
 
 // --------------------------------------------
 class Character {
-    const XmlElement@ data;
+    protected Metagame@ m_metagame;
+    protected const XmlElement@ data;
 
     string TagName = "character";
 
@@ -37,6 +40,7 @@ class Character {
 
 
 	Character(Metagame@ m_metagame, int character_id) {
+        @this.m_metagame = m_metagame;
         @this.data = getCharacterInfo(m_metagame, character_id);
         // _log(this.data.toString());
         init_from_data(@this.data);
@@ -59,5 +63,11 @@ class Character {
         this.squad_size = data.getIntAttribute("squad_size");
         this.wounded = data.getIntAttribute("wounded");
         this.dead = data.getIntAttribute("dead");
+    }
+
+    //发射
+    void fire_projectiles(string instance_key, Vector3@ position, Vector3@ offset = Vector3(0, 0, 0), string instance_class = "grenade") {
+        CreateInstance@ create_instance = CreateInstance(this.faction_id, this.id, instance_class, instance_key, position, offset);
+        m_metagame.getComms().send(create_instance.toString());
     }
 }

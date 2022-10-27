@@ -25,6 +25,14 @@ class CreateInstance {
 
     //TODO:创建toString()方法，方便调用
     string toString() {
-        
+        string c = 
+				"<command class='create_instance'" +
+				" faction_id='" + faction_id + "'" +
+				" instance_class='"+ instance_class + "'" +
+				" instance_key='" + instance_key + "'" +
+				" position='" + position.toString() + "'" +
+				" character_id='" + character_id + "'" +
+				" offset='" + offset.toString() + "' />";
+        return c;
     }
 }

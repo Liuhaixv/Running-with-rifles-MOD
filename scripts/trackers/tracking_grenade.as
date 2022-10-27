@@ -52,10 +52,12 @@ class TrackingGrenade : Tracker {
 
 			Character@ character = Character(m_metagame, character_id);
 
-			int faction_id = character.faction_id;
-			generate_grenade(stringToVector3(event.getStringAttribute("position")), 
-							faction_id,
-							character_id);
+			character.fire_projectiles("hand_grenade.projectile", 
+										stringToVector3(event.getStringAttribute("position")));
+			// int faction_id = character.faction_id;
+			// generate_grenade(stringToVector3(event.getStringAttribute("position")), 
+			// 				faction_id,
+			// 				character_id);
 		} else {
 			return;
 		}
