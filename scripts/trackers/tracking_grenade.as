@@ -51,26 +51,8 @@ class TrackingGrenade : Tracker {
 			int character_id = event.getIntAttribute("character_id");
 
 			Character@ character = Character(m_metagame, character_id);
-			// const XmlElement@ character = getCharacterInfo(m_metagame, character_id);
 
-			//查询到character_id为105的玩家的信息为:
-			//TagName=character
-			// block=4 18
-			// dead=0
-			// faction_id=0
-			// id=105
-			// leader=1
-			// name=Rodney Price
-			// player_id=0
-			// position=145.864 19.902 643.358
-			// rp=500
-			// xp=0 
-			// soldier_group_name=default
-			// squad_size=0
-			// wounded=0
-			_log("查询到character_id为" + character_id + "的玩家的信息为:" + character.data.toString());
-
-			int faction_id = character.data.getIntAttribute("faction_id");
+			int faction_id = character.faction_id;
 			generate_grenade(stringToVector3(event.getStringAttribute("position")), 
 							faction_id,
 							character_id);
