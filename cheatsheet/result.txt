@@ -1,4 +1,11 @@
-1.notify_script
-.projectile
-使游戏触发事件，事件key值为rangefinder
-<result class="notify_script" key="rangefinder" />
+1.notify_script (.projectile)
+
+使游戏触发事件
+
+TagName=result_event
+character_id=105
+direction=0 0 0 
+key=tracking_grenade 
+position=828.394 5.3268 662.569
+
+<result class="notify_script" key="tracking_grenade" />
