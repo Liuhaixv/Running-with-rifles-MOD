@@ -1,4 +1,8 @@
-Test to combine and make some new stuff
+## Test to combine and make some new stuff
+
 Currently still in development yet..
-changes for amemliky
-changes two for amemliky
+
+---
+## Completed work
+### 1. Tracking grenade
+Fire multi grenades aiming at enemies when explode.

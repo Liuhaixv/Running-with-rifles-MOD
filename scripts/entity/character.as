@@ -71,9 +71,9 @@ class Character {
         array<const XmlElement@> foundSoldiers;
 		for (int i = 0; i < 3; i++){
             //跳过友军目标
-            // if(i == faction_id) {
-            //     continue;                
-            // }
+            if(i == faction_id) {
+                continue;                
+            }
 
 			//custom query, collects all soldiers of a faction near target position
 			array<const XmlElement@>@ soldiers = getCharactersNearPosition(m_metagame, position, i, range);				
