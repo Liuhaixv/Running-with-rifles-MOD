@@ -1,0 +1,2 @@
+query_helpers.getCharactersNearPosition(const Metagame@ metagame, const Vector3@ position, int factionId, float range = 80.0f)
+characters查询返回的结果是玩家的id数组

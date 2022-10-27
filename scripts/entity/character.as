@@ -66,28 +66,35 @@ class Character {
     }
 
     //获取在某坐标范围内的敌人坐标
-    private array<Vector3@> getEnemiesTargets(Vector3@ position, float range) {
-        //array of Character
+    array<Vector3@> getEnemiesTargets(Vector3@ position, float range, uint maxTotalNum = 9999) {
+        //array of character's id
         array<const XmlElement@> foundSoldiers;
 		for (int i = 0; i < 3; i++){
             //跳过友军目标
-            if(i == faction_id) {
-                continue;                
-            }
+            // if(i == faction_id) {
+            //     continue;                
+            // }
 
 			//custom query, collects all soldiers of a faction near target position
 			array<const XmlElement@>@ soldiers = getCharactersNearPosition(m_metagame, position, i, range);				
 			int s_size = soldiers.length();
 			
-            for(int i = 0; i < soldiers.length(); i++) {
-                foundSoldiers.insertLast(soilders[i]);
+            for(int i = 0; i < soldiers.length() && i < maxTotalNum; i++) {
+                foundSoldiers.insertLast(soldiers[i]);
             }
 		}
 
         array<Vector3@> positions;
-        for(int i = 0; i < foundSoldiers.length(); i++) {            
-            Vector3@ positionOfSoldier = stringToVector3(foundSoldiers[i].getStringAttribute("position"));
-            positions.insertLast(positionOfSoldier);
+        for(int i = 0; i < foundSoldiers.length(); i++) { 
+			int soldier_id = foundSoldiers[i].getIntAttribute("id");
+			//extracting the targeted soldier's position
+			const XmlElement@ character = getCharacterInfo(m_metagame, soldier_id);
+
+			if (character !is null) {
+				string soldierPos = character.getStringAttribute("position");
+                Vector3@ positionOfSoldier = stringToVector3(soldierPos);
+                positions.insertLast(positionOfSoldier);
+			}
         }
         return positions;
 	}
