@@ -10,9 +10,16 @@
 
 class TrackingGrenade : Tracker {
 	protected Metagame@ m_metagame;
-	
 	private string notify_script_key = "tracking_grenade";
-	// protected array<empdVehicle@> empList;
+
+	//跟踪手雷爆炸时跟踪的范围
+	private float trackingRange = 100;
+	//跟踪手雷发射的子雷数量限制
+	private int maxNumOfChildGrenades = 100;
+	//子雷的速度
+	private float speedOfChildGrenades = 0.8;
+	//子雷的注册名,这里使用触发式手雷作为演示
+	private string childGrenadeKeyName = "impact_grenade.projectile";
 
 	TrackingGrenade(Metagame@ metagame) {
 		@m_metagame = @metagame;
@@ -28,17 +35,6 @@ class TrackingGrenade : Tracker {
 	}
 
 	void update(float time) {
-		//updating the timer on all tracked vehicles
-		// for (uint i = 0; i < empList.length() ; ++i) {		
-		// 	empList[i].m_timer -= time;
-			
-		// 	if (empList[i].m_timer < 0){
-		// 		unlockVehicle(m_metagame, empList[i].m_id);
-				
-		// 		empList.removeAt(i);
-		// 		--i;
-		// 	}
-		// }
 	}
 	
 	protected void handleResultEvent(const XmlElement@ event) {		
@@ -49,19 +45,36 @@ class TrackingGrenade : Tracker {
             _log("开始处理tracking_grenade事件:" + event.toString());
 
 			int character_id = event.getIntAttribute("character_id");
-
 			Character@ character = Character(m_metagame, character_id);
+			//爆炸的位置
+			Vector3@ position = stringToVector3(event.getStringAttribute("position"));
 
-			character.fire_projectiles("hand_grenade.projectile", 
-										stringToVector3(event.getStringAttribute("position")));
-			// int faction_id = character.faction_id;
-			// generate_grenade(stringToVector3(event.getStringAttribute("position")), 
-			// 				faction_id,
-			// 				character_id);
+			//character的xml数据数组
+			//获取爆炸位置附近的所有敌人
+			array<Vector3@>@ enemies = character.getEnemiesTargets(position, trackingRange);
+
+			//对每一个敌人发射子雷
+			for(int i = 0; i < enemies.length() && i < maxNumOfChildGrenades; i++) {
+				Vector3@ enemyPosition = enemies[i];
+				//计算敌人的方向
+				Vector3@ direction = enemyPosition.subtract(position);
+				normalizeVector3(direction);
+
+				//速度
+				Vector3@ offset = direction.scale(speedOfChildGrenades);
+
+				character.fire_projectiles(childGrenadeKeyName, position, offset);
+			}
 		} else {
 			return;
 		}
     }
+
+	//归一化向量，用于表示方向时使用
+	private void normalizeVector3(Vector3@ vector3) {
+		//单位向量等于向量乘（模的倒数）
+		@vector3 = @vector3.scale(1.0 / getPositionDistance(Vector3(0, 0, 0), vector3));
+	}
 
 	//test
 	//在position处生成手雷
@@ -96,38 +109,4 @@ class TrackingGrenade : Tracker {
 		command.setStringAttribute("offset", Vector3(0, 0.1, 0).toString());
 		m_metagame.getComms().send(command);
 	}
-
-    
-    // void getEnemiesInRange(int friendlyFactionId, float range) {
-	// 	//extracting data
-	// 	int factionId = AC130Request.m_factionId;
-	// 	Vector3 targetPos;
-		
-	// 	//randomizing faction order, so that the AC130 won't always prioritize targeting one faction over an another
-	// 	array<int> fRandomized = indexRandomizer(4, factionId);
-	
-	// 	//scanning for a target
-	// 	for (uint f = 0; f < 3; ++f){
-	// 		//custom query, collects all soldiers of a faction near target position
-	// 		array<const XmlElement@>@ soldiers = getCharactersNearPosition(m_metagame, targetPos, fRandomized[f], range);				
-	// 		int s_size = soldiers.length();
-			
-	// 		//if no target is found, then move on to the next faction
-	// 		if (s_size == 0) continue;
-			
-	// 		//randomly selecting a soldier
-	// 		int s_i = rand(0,soldiers.length()-1);
-	// 		int soldier_id = soldiers[s_i].getIntAttribute("id");
-
-	// 		//extracting the targeted soldier's position
-	// 		const XmlElement@ character = getCharacterInfo(m_metagame, soldier_id);
-	// 		if (character !is null) {
-	// 			string soldierPos = character.getStringAttribute("position");
-	// 			return soldierPos;
-	// 		}
-	// 	}
-		
-	// 	//if no valid target is found at all, then we return this message
-	// 	return "no_target";
-    // }
 }

@@ -65,6 +65,33 @@ class Character {
         this.dead = data.getIntAttribute("dead");
     }
 
+    //获取在某坐标范围内的敌人坐标
+    private array<Vector3@> getEnemiesTargets(Vector3@ position, float range) {
+        //array of Character
+        array<const XmlElement@> foundSoldiers;
+		for (int i = 0; i < 3; i++){
+            //跳过友军目标
+            if(i == faction_id) {
+                continue;                
+            }
+
+			//custom query, collects all soldiers of a faction near target position
+			array<const XmlElement@>@ soldiers = getCharactersNearPosition(m_metagame, position, i, range);				
+			int s_size = soldiers.length();
+			
+            for(int i = 0; i < soldiers.length(); i++) {
+                foundSoldiers.insertLast(soilders[i]);
+            }
+		}
+
+        array<Vector3@> positions;
+        for(int i = 0; i < foundSoldiers.length(); i++) {            
+            Vector3@ positionOfSoldier = stringToVector3(foundSoldiers[i].getStringAttribute("position"));
+            positions.insertLast(positionOfSoldier);
+        }
+        return positions;
+	}
+
     //发射
     void fire_projectiles(string instance_key, Vector3@ position, Vector3@ offset = Vector3(0, 0, 0), string instance_class = "grenade") {
         CreateInstance@ create_instance = CreateInstance(this.faction_id, this.id, instance_class, instance_key, position, offset);
