@@ -25,17 +25,6 @@ class TrackingGrenade : Tracker {
 		return true;
 	}
 
-	protected void handleResultEvent(const XmlElement@ event) {		
-		//checking if the event was triggered
-		string key = event.getStringAttribute("key");
-		if (key == notify_script_key) {
-			//开始处理tracking_grenade事件:TagName=result_event character_id=105 direction=-0.969464 -0.227791 0.0908327 key=tracking_grenade position=861.832 16.9094 572.977 
-            _log("开始处理tracking_grenade事件:" + event.toString());
-		} else {
-			return;
-		}
-    }
-
 	void update(float time) {
 		//updating the timer on all tracked vehicles
 		// for (uint i = 0; i < empList.length() ; ++i) {		
@@ -48,6 +37,75 @@ class TrackingGrenade : Tracker {
 		// 		--i;
 		// 	}
 		// }
+	}
+	
+	protected void handleResultEvent(const XmlElement@ event) {		
+		//checking if the event was triggered
+		string key = event.getStringAttribute("key");
+		if (key == notify_script_key) {
+			//开始处理tracking_grenade事件:TagName=result_event character_id=105 direction=-0.969464 -0.227791 0.0908327 key=tracking_grenade position=861.832 16.9094 572.977 
+            _log("开始处理tracking_grenade事件:" + event.toString());
+
+			int character_id = event.getIntAttribute("character_id");
+			const XmlElement@ character = getCharacterInfo(m_metagame, character_id);
+
+			//查询到character_id为105的玩家的信息为:
+			//TagName=character
+			// block=4 18
+			// dead=0
+			// faction_id=0
+			// id=105
+			// leader=1
+			// name=Rodney Price
+			// player_id=0
+			// position=145.864 19.902 643.358
+			// rp=500
+			// xp=0 
+			// soldier_group_name=default
+			// squad_size=0
+			// wounded=0
+			_log("查询到character_id为" + character_id + "的玩家的信息为:" + character.toString());
+
+			int faction_id = character.getIntAttribute("faction_id");
+			generate_grenade(stringToVector3(event.getStringAttribute("position")), 
+							faction_id,
+							character_id);
+		} else {
+			return;
+		}
+    }
+
+	//在position处生成手雷
+	private void generate_grenade(Vector3 position, int faction_id, int character_id) {
+
+		//生成实例
+
+		//写法1
+		// string c = 
+		// 	"<command class='create_instance'" +
+		// 	" faction_id='" + factionId + "'" +
+		// 	" character_id='" + characterId + "'" +
+		// 	" instance_class='grenade'" +
+		// 	" instance_key='" + instanceKey + "'" +
+		// 	" position='" + position.toString() + "'" +
+		// 	" offset='" + projectileSpeed.toString() + "' />";
+		//
+		// m_metagame.getComms().send(c);
+
+		//写法2
+		XmlElement command("command");
+
+		command.setStringAttribute("class", "create_instance");
+
+		command.setIntAttribute("faction_id", faction_id);
+		command.setIntAttribute("character_id", character_id);
+
+		command.setStringAttribute("instance_class", "projectile");
+		command.setStringAttribute("instance_key", "stun_grenade.projectile");
+
+		command.setStringAttribute("position", position.toString());
+		command.setStringAttribute("offset", Vector3(0, 0.1, 0).toString());
+		m_metagame.getComms().send(command);
 	}
 
     

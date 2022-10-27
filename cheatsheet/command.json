@@ -9,9 +9,12 @@
         },
         {
             "class": "create_instance",
+            "faction_id":"阵营id",
+            "character_id":"玩家id",
             "instance_class": "grenade",
             "instance_key": "emp_blast.projectile",
-            "position": "124.12 333.24 42.12",
+            "position": "Vector3指定生成的位置",
+            "offset":"Vector3指定生成时实例的初速",
             "description": "生成实例"
         }
     ]

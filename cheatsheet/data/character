@@ -1,0 +1,22 @@
+query_helpers.getCharacterInfo(const Metagame@ metagame, int characterId)
+查询到character_id为105的玩家的信息为:
+TagName=character
+
+block=4 18
+faction_id=0
+id=105
+
+leader=1
+
+name=Rodney Price
+player_id=0
+position=145.864 19.902 643.358
+
+rp=500
+xp=0 
+
+soldier_group_name=default
+squad_size=0
+
+wounded=0
+dead=0
