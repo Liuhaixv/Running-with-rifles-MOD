@@ -15,7 +15,7 @@
             "instance_key": "emp_blast.projectile",
             "position": "Vector3指定生成的位置",
             "offset":"Vector3指定生成时实例的初速",
-            "description": "生成实例"
+            "description": "生成实例,例如车辆、子弹、发射物、手雷等实体"
         }
     ]
 }

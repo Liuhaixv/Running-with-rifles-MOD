@@ -5,6 +5,8 @@
 #include "query_helpers.as"
 #include "query_helpers2.as"
 
+#include "character.as"
+
 
 class TrackingGrenade : Tracker {
 	protected Metagame@ m_metagame;
@@ -47,7 +49,9 @@ class TrackingGrenade : Tracker {
             _log("开始处理tracking_grenade事件:" + event.toString());
 
 			int character_id = event.getIntAttribute("character_id");
-			const XmlElement@ character = getCharacterInfo(m_metagame, character_id);
+
+			Character@ character = Character(m_metagame, character_id);
+			// const XmlElement@ character = getCharacterInfo(m_metagame, character_id);
 
 			//查询到character_id为105的玩家的信息为:
 			//TagName=character
@@ -64,9 +68,9 @@ class TrackingGrenade : Tracker {
 			// soldier_group_name=default
 			// squad_size=0
 			// wounded=0
-			_log("查询到character_id为" + character_id + "的玩家的信息为:" + character.toString());
+			_log("查询到character_id为" + character_id + "的玩家的信息为:" + character.data.toString());
 
-			int faction_id = character.getIntAttribute("faction_id");
+			int faction_id = character.data.getIntAttribute("faction_id");
 			generate_grenade(stringToVector3(event.getStringAttribute("position")), 
 							faction_id,
 							character_id);
@@ -75,6 +79,7 @@ class TrackingGrenade : Tracker {
 		}
     }
 
+	//test
 	//在position处生成手雷
 	private void generate_grenade(Vector3 position, int faction_id, int character_id) {
 
