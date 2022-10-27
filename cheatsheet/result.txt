@@ -1,0 +1,4 @@
+1.notify_script
+.projectile
+使游戏触发事件，事件key值为rangefinder
+<result class="notify_script" key="rangefinder" />
