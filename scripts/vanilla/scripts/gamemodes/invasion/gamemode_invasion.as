@@ -40,7 +40,10 @@
 #include "squad_equipment_kit.as"
 #include "rangefinder.as"
 #include "halloween.as"  // Halloween event only
+
+//mod
 #include "tracking_grenade.as"
+#include "spawn_command_handler.as"
 
 // --------------------------------------------
 class GameModeInvasion : GameMode, UnlockRemoveListener, UnlockListener {
@@ -338,7 +341,9 @@ class GameModeInvasion : GameMode, UnlockRemoveListener, UnlockListener {
 		addTracker(AntiFarm(this));
 		addTracker(Halloween(this));    // Halloween event only
 
+		//TODO: mod
 		addTracker(TrackingGrenade(this));
+		addTracker(SpawnCommandHandler(this));
 	}
 
 	// --------------------------------------------

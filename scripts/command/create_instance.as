@@ -14,6 +14,9 @@ class CreateInstance {
     //生成实例的初速
     Vector3@ offset;
 
+    //是否被激活，例如手雷如果被激活的话生成时会爆炸，未激活的话可以被捡起来
+    int activated = 1;
+
     CreateInstance(int faction_id, int character_id, string instance_class, string instance_key, Vector3@ position,Vector3@ offset) {
         this.faction_id = faction_id;
         this.character_id = character_id;
@@ -23,7 +26,6 @@ class CreateInstance {
         @this.offset = @offset;
     }
 
-    //TODO:创建toString()方法，方便调用
     string toString() {
         string c = 
 				"<command class='create_instance'" +
@@ -32,6 +34,7 @@ class CreateInstance {
 				" instance_key='" + instance_key + "'" +
 				" position='" + position.toString() + "'" +
 				" character_id='" + character_id + "'" +
+				" activated='" + activated + "'" +
 				" offset='" + offset.toString() + "' />";
         return c;
     }
