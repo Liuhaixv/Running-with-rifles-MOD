@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources clear_weapons="1" clear_vehicles="1" clear_calls="1">
  <projectile key="tracking_grenade.projectile" />
+ <projectile key="repair_grenade.projectile" />
+ 
 </resources>

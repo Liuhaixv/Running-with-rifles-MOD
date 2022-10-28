@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<projectile class="grenade" name="impact grenade" key="impact_grenade.projectile" slot="0" radius="0.15" drop_count_limit_in_range="4">
+<projectile class="grenade" name="repair grenade" key="repair_grenade.projectile" slot="0" radius="3" drop_count_limit_in_range="4">
     <tag name="grenade" />
 
-    <result class="blast" radius="3.0" damage="2.4" push="0.8" decal="1" character_state="death" />
+    <!-- <result class="blast" radius="3.0" damage="2.4" push="0.8" decal="1" character_state="death" /> -->
+    <result class="blast" radius="3.0" damage="2.4" push="0.8" decal="1" sight_range_modifier="5" consume="1"  untransform_equipment_class="vest" untransform_count="10"  />
     <trigger class="impact" />
     <rotation class="random" />
 
