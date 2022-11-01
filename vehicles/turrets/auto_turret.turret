@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vehicle file="vehicle_base.vehicle" name="Auto Turret" key="auto_turret.turret" time_to_live = "5.0">
+<vehicle file="vehicle_base.vehicle" name="Auto Turret" key="auto_turret.turret">
 	<tag name="metal_heavy" />
 	<tag name="light_combat" />    
   

@@ -47,7 +47,9 @@ class TrackingGrenade : Tracker {
 			int character_id = event.getIntAttribute("character_id");
 			Character@ character = Character(m_metagame, character_id);
 			//爆炸的位置
-			Vector3@ position = stringToVector3(event.getStringAttribute("position"));
+			string position_str = event.getStringAttribute("position");
+			if(position_str.isEmpty()) return;
+			Vector3@ position = stringToVector3(position_str);
 
 			//character的xml数据数组
 			//获取爆炸位置附近的所有敌人

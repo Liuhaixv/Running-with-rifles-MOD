@@ -10,7 +10,7 @@ class Character {
     protected Metagame@ m_metagame;
     protected const XmlElement@ data;
 
-    private initialized = false;
+    private bool initialized = false;
     
     //-------------------------------------------------------
 
@@ -108,6 +108,7 @@ class Character {
 
 			if (character !is null) {
 				string soldierPos = character.getStringAttribute("position");
+                if(soldierPos.isEmpty()) continue;
                 Vector3@ positionOfSoldier = stringToVector3(soldierPos);
                 positions.insertLast(positionOfSoldier);
 			}
