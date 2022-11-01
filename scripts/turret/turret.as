@@ -12,7 +12,7 @@ abstract class Turret {
 
     //最大的攻击范围
     //Turret can only attack enemies within distance of max_range
-    protected float max_range;
+    protected float max_range = 80;
     protected Vector3@ position;
     protected Character@ owner;
 
@@ -40,25 +40,27 @@ abstract class Turret {
 
     //获取炮台附近的敌人坐标
     //Get enemies' positions near the turret
-    protected array<Vector3@> getEnemiesNearBy(){
+    protected array<Vector3@> getEnemiesNearBy() {
         return owner.getEnemiesTargets(position, max_range);
     }
 
     //更新炮台位置
-    void updateTurretPosition(){
+    void updateTurretPosition() {
         const XmlElement@ vehicleInfo = getVehicleInfo(m_metagame, vehicle_id);
         if (vehicleInfo !is null) {
-            @position = @stringToVector3(vehicleInfo.getStringAttribute("position"));
+            if(!vehicleInfo.getStringAttribute("position").isEmpty()) {
+                @position = @stringToVector3(vehicleInfo.getStringAttribute("position"));
+            }
         } 
     }
 
     //更新开火时间
-    void updateLastFireTime(float time){
+    void updateLastFireTime(float time) {
         this.last_fired_time = time;
     }
 
     //Override
-    void attackEnemiesNearBy(float time_passed){
+    void attackEnemiesNearBy(float time_passed) {
         _log("[ERR]请先实现attackEnemiesNearBy方法!");
     }
 }

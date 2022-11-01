@@ -62,7 +62,10 @@ class Character {
         this.soldier_group_name = data.getStringAttribute("soldier_group_name");
 
         this.block = data.getStringAttribute("block");
-        @this.position = stringToVector3(data.getStringAttribute("position"));
+        
+        if(!data.getStringAttribute("position").isEmpty()){
+            @this.position = stringToVector3(data.getStringAttribute("position"));
+        }
 
         this.faction_id = data.getIntAttribute("faction_id");
         this.id = data.getIntAttribute("id");

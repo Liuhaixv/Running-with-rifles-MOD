@@ -1,0 +1,11 @@
+D:\SteamLibrary\steamapps\common\RunningWithRifles\media\packages\liuhaixv\cheatsheet\1.txt
+"generic_nodes"
+id,
+tag,
+layer_name,
+
+generic_node(id, tag, layer_name),
+position,
+orientation,
+extent,
+block

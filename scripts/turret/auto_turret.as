@@ -5,15 +5,17 @@ final class AutoTurret: Turret {
     //每轮攻击的目标数量
     array<Vector3@>@ enemies = null;
     int max_targets = 4;
-    float projectile_speed = 0.7;
+    float projectile_speed = 0.4;
 
     AutoTurret(Metagame@ m_metagame, int owner_id, int vehicle_id, string vehicle_key){
         super(m_metagame, owner_id, vehicle_id, vehicle_key);
 
         //开火间隔
-        fire_interval = 0.0;
+        fire_interval = 1.5;
         //开火坐标偏移
-        @position_offset = @Vector3(0, 12, 0);
+        @position_offset = @Vector3(0, 15, 0);
+        //最大范围
+        max_range = 50.0;
     }
 
     protected void attackEnemiesNearBy(float time_passed){
@@ -30,10 +32,15 @@ final class AutoTurret: Turret {
             return;
         }
 
-        for(int i = 0; i < enemies.length() && i < max_targets; i++) {
-            Vector3@ direction = normalizeVector3(enemies[i].subtract(this.position));
+        updateTurretPosition();
 
-            this.owner.fire_projectiles("firenade.projectile", this.position.add(position_offset), direction.scale(projectile_speed),"grenade");
+        for(int i = 0; i < enemies.length() && i < max_targets; i++) {
+            // Vector3@ direction = normalizeVector3(enemies[i].subtract(this.position));
+            float g = 10;
+            Vector3@ speed = getVelocityToFlyToTarget(enemies[i], this.position.add(position_offset), projectile_speed, g, false);
+
+            _log("auto_turret发射:" + speed.toString());
+            this.owner.fire_projectiles("mounted_gl.projectile", this.position.add(position_offset), speed,"grenade");
         }
 
         timer = fire_interval;
