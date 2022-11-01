@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vehicles>
+	<vehicle file="auto_turret.vehicle" />
+
+	<!-- <vehicle file="jeep.vehicle" respawn_time="3600">
+		<event key="receive_damage_xp_reward">	<trigger class="receive_damage" />	<result class="reward" xp="0.0" /></event>
+		<event key="destroy_xp_reward">		<trigger class="destroy" />		<result class="reward" xp="0.0020" /></event>
+		<event key="spot_xp_reward">		<trigger class="spot" />		<result class="reward" xp="0.0001" /></event>
+		<event key="receive_damage_rp_reward">	<trigger class="receive_damage" />	<result class="reward" rp="0.0" /></event>
+		<event key="destroy_rp_reward">		<trigger class="destroy" />		<result class="reward" rp="1.0" /></event>
+		<event key="spot_rp_reward">		<trigger class="spot" />		<result class="reward" rp="1.0" /></event>
+	</vehicle> -->
+</vehicles>
