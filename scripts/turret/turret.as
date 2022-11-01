@@ -11,7 +11,7 @@ abstract class Turret {
     protected string vehicle_key;
 
     //最大的攻击范围
-    protected int max_range;
+    protected float max_range;
     protected Vector3@ position;
     protected Character@ owner;
 
@@ -28,9 +28,10 @@ abstract class Turret {
     }
 
     protected array<Vector3@> getEnemiesNearBy(){
-
+        return owner.getEnemiesTargets(position, max_range);
     }
 
+    //Override
     protected void attackEnemiesNearBy(){}
 
     //更新炮台位置
