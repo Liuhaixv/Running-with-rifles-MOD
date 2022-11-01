@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vehicles>
-	<vehicle file="auto_turret.vehicle" />
+	<vehicle file="auto_turret.turret" />
 
 	<!-- <vehicle file="jeep.vehicle" respawn_time="3600">
 		<event key="receive_damage_xp_reward">	<trigger class="receive_damage" />	<result class="reward" xp="0.0" /></event>

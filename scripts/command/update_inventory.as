@@ -2,6 +2,7 @@
 #include "helpers.as"
 // #include "query_helpers.as"
 
+//TODO: unfinished
 class UpdateInventory {
     
 

@@ -47,6 +47,10 @@ class SpawnCommandHandler : Tracker {
         //实例类
         string instanceClass = message.substr(instanceClassIndex + 1);
 
+		if(instanceClass == "turret") {
+			instanceClass = "vehicle";
+		}
+
         //截取$后所有字符
         string instanceStr = message.substr(1);
 

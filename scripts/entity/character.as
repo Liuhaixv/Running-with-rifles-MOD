@@ -10,6 +10,10 @@ class Character {
     protected Metagame@ m_metagame;
     protected const XmlElement@ data;
 
+    private initialized = false;
+    
+    //-------------------------------------------------------
+
     string TagName = "character";
 
     //系统随机分配的士兵名称，非玩家昵称
@@ -39,14 +43,21 @@ class Character {
     int dead=0;
 
 
-	Character(Metagame@ m_metagame, int character_id) {
+	Character(Metagame@ m_metagame, int character_id, bool init=true) {
         @this.m_metagame = m_metagame;
-        @this.data = getCharacterInfo(m_metagame, character_id);
-        // _log(this.data.toString());
-        init_from_data(@this.data);
+        if(init) {
+            @this.data = getCharacterInfo(m_metagame, character_id);
+            // _log(this.data.toString());
+            initFromData(@this.data);
+            initialized = true;
+        }        
     }
 
-    void init_from_data(const XmlElement@ data) {
+    void updateFromData(const XmlElement@ data) {
+        initFromData(data);
+    }
+
+    void initFromData(const XmlElement@ data) {
         this.name = data.getStringAttribute("name");
         this.soldier_group_name = data.getStringAttribute("soldier_group_name");
 
@@ -67,6 +78,11 @@ class Character {
 
     //获取在某坐标范围内的敌人坐标
     array<Vector3@> getEnemiesTargets(Vector3@ position, float range, uint maxTotalNum = 9999) {
+        if(!initialized) {
+            array<Vector3@> empty;
+            return empty;
+        }
+
         //array of character's id
         array<const XmlElement@> foundSoldiers;
 		for (int i = 0; i < 3; i++){
@@ -101,7 +117,16 @@ class Character {
 
     //发射
     void fire_projectiles(string instance_key, Vector3@ position, Vector3@ offset = Vector3(0, 0, 0), string instance_class = "grenade") {
+        if(!initialized){
+            return;
+        }
         CreateInstance@ create_instance = CreateInstance(this.faction_id, this.id, instance_class, instance_key, position, offset);
         m_metagame.getComms().send(create_instance.toString());
+    }
+    
+    void updateCharacter() {
+        @this.data = getCharacterInfo(m_metagame, id);
+        // _log(this.data.toString());
+        updateFromData(@this.data);
     }
 }

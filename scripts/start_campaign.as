@@ -26,6 +26,8 @@ void main(dictionary@ inputData) {
 		//projectiles, including throwables
 		settings.m_overlayPaths.insertLast("media/packages/liuhaixv/weapons/projectiles/throwables");
 		settings.m_overlayPaths.insertLast("media/packages/liuhaixv/weapons/projectiles");
+		//turret
+		settings.m_overlayPaths.insertLast("media/packages/liuhaixv/vehicles/turrets");
 		//枪、发射器类手持武器
 		//weapons of guns and launchers
 		settings.m_overlayPaths.insertLast("media/packages/liuhaixv/weapons/guns");

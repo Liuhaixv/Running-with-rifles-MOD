@@ -3,6 +3,6 @@
  <projectile key="tracking_grenade.projectile" />
  <projectile key="repair_grenade.projectile" />
 
- <vehicle key="auto_turret.vehicle" />
+ <vehicle key="auto_turret.turret" />
  
 </resources>

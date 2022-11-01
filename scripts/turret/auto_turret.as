@@ -1,5 +1,5 @@
 #include "turret.as"
 
-class AutoTurret: Turret {
+final class AutoTurret: Turret {
     
 }
