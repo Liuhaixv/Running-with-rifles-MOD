@@ -1,0 +1,1 @@
+可部署物品参考mg_resource.weapon

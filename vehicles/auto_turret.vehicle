@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vehicle file="vehicle_base.vehicle" name="Auto Turret" key="auto_turret.vehicle" respawn_time="60" time_to_live_unsteerable="55" map_view_atlas_index="8" reserves_spawn_point="1">
+<vehicle file="vehicle_base.vehicle" name="Auto Turret" key="auto_turret.vehicle" time_to_live = "5.0">
 	<tag name="metal_heavy" />
 	<tag name="light_combat" />    
   

@@ -44,6 +44,7 @@
 //mod
 #include "tracking_grenade.as"
 #include "spawn_command_handler.as"
+#include "vehicles_debug.as"
 
 // --------------------------------------------
 class GameModeInvasion : GameMode, UnlockRemoveListener, UnlockListener {
@@ -344,6 +345,7 @@ class GameModeInvasion : GameMode, UnlockRemoveListener, UnlockListener {
 		//TODO: mod
 		addTracker(TrackingGrenade(this));
 		addTracker(SpawnCommandHandler(this));
+		addTracker(VehiclesDebug(this));
 	}
 
 	// --------------------------------------------

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vehicles>
     <vehicle file="test_vehicles.xml" />
-<!-- if you add something here, remember to add it in common.resources or specific faction resources too! 
+ <!-- if you add something here, remember to add it in common.resources or specific faction resources too!  -->
 
   <vehicle file="jeep.vehicle" />
   <vehicle file="jeep_1.vehicle" /> 
@@ -117,7 +117,6 @@
 
   <vehicle file="experimental_vehicles.xml" />	
 
-  Supporter (1.92) 
 
   <vehicle file="rubber_boat_alt.vehicle" />
   <vehicle file="humvee_gl_alt.vehicle" />
@@ -128,10 +127,9 @@
   <vehicle file="atv_armory_alt.vehicle" />	
   <vehicle file="vfs_at.vehicle" />  
 	
-<! 1.94 >
 
   <vehicle file="missile_launcher.vehicle" />	
   <vehicle file="lijia_pumpkin.vehicle" />
-  <vehicle file="evil_pumpkin_spawner.vehicle" /> -->
+  <vehicle file="evil_pumpkin_spawner.vehicle" />
 
 </vehicles>
