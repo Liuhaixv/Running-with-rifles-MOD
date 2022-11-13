@@ -1,0 +1,165 @@
+result = read_from_xml(a1, "modifier");
+for (i = result; result; i = result)
+{
+    std::string::string(v38, "class");
+    v42 = 0;
+    sub_41D3E0((int)v41, i, (int)v38);
+    LOBYTE(v42) = 2;
+    std::string::~string(v38);
+    if ((unsigned __int8)std::operator==<char>(v41, "projectile_hit_result"))
+    {
+        sub_52C090(i, weapon_obj, v41);
+    }
+    else if ((unsigned __int8)std::operator==<char>(v41, "projectile_blast_result"))
+    {
+        sub_52C090(i, weapon_obj + 6, v41);
+    }
+    else if ((unsigned __int8)std::operator==<char>(v41, "melee_hit_result"))
+    {
+        sub_52C090(i, weapon_obj + 12, v41);
+    }
+    else
+    {
+        if ((unsigned __int8)std::operator==<char>(v41, "speed"))
+        {
+            v30 = 0.0;
+            if (!sub_440250((int)"value", (int)&v34))
+                v30 = v34;
+            v4 = (_DWORD *)((int(__stdcall *)(float))sub_747C50)(v30);
+            weapon_obj[0x12] = *v4;
+            weapon_obj[19] = v4[1];
+            std::ostringstream::ostringstream(X, 2, 1);
+            v25 = v30;
+            HIDWORD(v20) = "  adding speed modifier, ";
+            LODWORD(v20) = X;
+            LOBYTE(v42) = 3;
+            log(v20);
+            std::ostream::operator<<(v5, LODWORD(v25));
+            std::string::string(v31, &unk_87E6C3);
+            LOBYTE(v42) = 4;
+            v6 = std::ostringstream::str(X, v32);
+            LOBYTE(v42) = 5;
+            sub_41C850(v31, v6);
+            LOBYTE(v42) = 4;
+            std::string::~string(v32);
+            LOBYTE(v42) = 3;
+            std::string::~string(v31);
+            v7 = X;
+            goto LABEL_24;
+        }
+        if ((unsigned __int8)std::operator==<char>(v41, "hit_success_probability"))
+        {
+            v30 = 0.0;
+            if (!sub_440250((int)"value", (int)&v33))
+                v30 = v33;
+            v8 = (_DWORD *)((int(__stdcall *)(float))sub_747C50)(v30);
+            weapon_obj[20] = *v8;
+            weapon_obj[21] = v8[1];
+            std::ostringstream::ostringstream(X, 2, 1);
+            v26 = v30;
+            HIDWORD(v21) = "  adding hit_success_probability modifier, ";
+            LODWORD(v21) = X;
+            LOBYTE(v42) = 6;
+            log(v21);
+            std::ostream::operator<<(v9, LODWORD(v26));
+            std::string::string(v31, &unk_87E6C3);
+            LOBYTE(v42) = 7;
+            v10 = std::ostringstream::str(X, v32);
+            LOBYTE(v42) = 8;
+            sub_41C850(v31, v10);
+            LOBYTE(v42) = 7;
+            std::string::~string(v32);
+            LOBYTE(v42) = 6;
+            std::string::~string(v31);
+            v7 = X;
+            goto LABEL_24;
+        }
+        if ((unsigned __int8)std::operator==<char>(v41, "backpack_weight_capacity"))
+        {
+            v30 = 0.0;
+            if (!sub_440250((int)"value", (int)&v35))
+                v30 = v35;
+            v11 = (_DWORD *)((int(__stdcall *)(float))sub_747C50)(v30);
+            weapon_obj[22] = *v11;
+            weapon_obj[23] = v11[1];
+            std::ostringstream::ostringstream(X, 2, 1);
+            v27 = v30;
+            HIDWORD(v22) = "  adding backpack_weight_capacity modifier, ";
+            LODWORD(v22) = X;
+            LOBYTE(v42) = 9;
+            log(v22);
+            std::ostream::operator<<(v12, LODWORD(v27));
+            std::string::string(v31, &unk_87E6C3);
+            LOBYTE(v42) = 10;
+            v13 = std::ostringstream::str(X, v32);
+            LOBYTE(v42) = 11;
+            sub_41C850(v31, v13);
+            LOBYTE(v42) = 10;
+            std::string::~string(v32);
+            LOBYTE(v42) = 9;
+            std::string::~string(v31);
+            v7 = X;
+            goto LABEL_24;
+        }
+        if ((unsigned __int8)std::operator==<char>(v41, "detectability"))
+        {
+            v30 = 0.0;
+            sub_41D020("value", &v30);
+            v14 = (_DWORD *)((int(__stdcall *)(float))sub_747C50)(v30);
+            weapon_obj[24] = *v14;
+            weapon_obj[25] = v14[1];
+            std::ostringstream::ostringstream(X, 2, 1);
+            v28 = v30;
+            HIDWORD(v23) = "  adding detectability modifier, ";
+            LODWORD(v23) = X;
+            LOBYTE(v42) = 12;
+            log(v23);
+            std::ostream::operator<<(v15, LODWORD(v28));
+            std::string::string(v31, &unk_87E6C3);
+            LOBYTE(v42) = 13;
+            v16 = std::ostringstream::str(X, v32);
+            LOBYTE(v42) = 14;
+            sub_41C850(v31, v16);
+            LOBYTE(v42) = 13;
+            std::string::~string(v32);
+            LOBYTE(v42) = 12;
+            std::string::~string(v31);
+            v7 = X;
+        LABEL_24:
+            LOBYTE(v42) = 2;
+            std::ostringstream::`vbase destructor(v7);
+            goto LABEL_25;
+        }
+        if ((unsigned __int8)std::operator==<char>(v41, "night_detectability"))
+        {
+            v30 = 0.0;
+            sub_41D020("value", &v30);
+            v17 = (_DWORD *)((int(__stdcall *)(float))sub_747C50)(v30);
+            weapon_obj[26] = *v17;
+            weapon_obj[27] = v17[1];
+            std::ostringstream::ostringstream(v40, 2, 1);
+            v29 = v30;
+            HIDWORD(v24) = "  adding night_detectability modifier, ";
+            LODWORD(v24) = v40;
+            LOBYTE(v42) = 15;
+            log(v24);
+            std::ostream::operator<<(v18, LODWORD(v29));
+            std::string::string(v37, &unk_87E6C3);
+            LOBYTE(v42) = 16;
+            v19 = std::ostringstream::str(v40, v39);
+            LOBYTE(v42) = 17;
+            sub_41C850(v37, v19);
+            LOBYTE(v42) = 16;
+            std::string::~string(v39);
+            LOBYTE(v42) = 15;
+            std::string::~string(v37);
+            v7 = v40;
+            goto LABEL_24;
+        }
+    }
+LABEL_25:
+    v42 = -1;
+    std::string::~string(v41);
+    result = sub_43F7D0((int)"modifier");
+}
+return result;
