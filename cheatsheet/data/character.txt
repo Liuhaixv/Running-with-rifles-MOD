@@ -3,7 +3,7 @@ query_helpers.getCharacterInfo(const Metagame@ metagame, int characterId)
 TagName=character
 
 block=4 18
-faction_id=0
+faction_id=0  
 id=105
 
 leader=1

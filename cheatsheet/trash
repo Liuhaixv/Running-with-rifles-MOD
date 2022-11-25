@@ -1,0 +1,14 @@
+gunship_run.call
+radius = 35.0
+CallMarkerConfig range = 58.0
+
+call_marker
+    CommsMarkerGroundCall
+        comms_marker_ground_call.png 1000*1000
+
+
+cluster_bomb.call
+
+call_marker
+
+CallMarkerConfig range = 35.0

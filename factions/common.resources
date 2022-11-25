@@ -4,5 +4,7 @@
  <projectile key="repair_grenade.projectile" />
 
  <vehicle key="auto_turret.turret" />
- 
+
+ <!-- test ElectricZone meterial -->
+ <call key='electric_zone_test.call' />  
 </resources>

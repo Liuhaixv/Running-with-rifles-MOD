@@ -76,7 +76,7 @@ class BasicCommandHandler : Tracker {
 		}
 		// it's a silent server command, check which one
 		if (checkCommand(message, "test2")) {
-			string command = "<command class='set_marker' faction_id='0' position='512 0 512' color='0 0 1' atlas_index='0' text='hello!' />";
+			string command = "<command class='set_marker' faction_id='0' position='123.5 55.2 22.1' color='0.1 0.2 1' atlas_index='0' text='iamtestin' />";
 			m_metagame.getComms().send(command);
 		} else if (checkCommand(message, "test")) {
 			dictionary dict = {{"TagName", "command"},{"class", "chat"},{"text", "test yourself!"}};

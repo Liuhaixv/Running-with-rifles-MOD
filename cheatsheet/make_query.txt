@@ -1,0 +1,5 @@
+<!-- vehicle id is 123 -->
+<!-- query id is 44 -->
+<command class="make_query" id="44">
+    <data class="vehicle" id="123" />
+</command>

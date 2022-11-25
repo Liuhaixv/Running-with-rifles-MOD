@@ -1,0 +1,31 @@
+else if (std::operator==<char>(v969, "BEING_SHOT_AT_UNALERTED_DETECTION_DELAY"))
+{
+  v720 = this[1];
+  __asm
+      {
+              fld     [esp+1E0h+var_1CC]
+              fstp    dword ptr [edx+1DCh]
+      }
+  *(v720 + 476) = _ET1;
+  std::ostringstream::ostringstream(v961, 2, 1);
+  __asm
+      {
+              fld     [esp+1E0h+var_1CC]
+              fstp    [esp+1E4h+var_1E4]
+      }
+  v970 = 370;
+  v722 = sub_2F4240(v961, "parameter ");
+  v723 = std::operator<< <char>(v722, v969);
+  v724 = sub_2F4240(v723, " found, =");
+  std::ostream::operator<<(v724, LODWORD(v941));
+  std::string::string(v959, &unk_75E6C3);
+  LOBYTE(v970) = 115;
+  v725 = std::ostringstream::str(v961, v960);
+  LOBYTE(v970) = 116;
+  sub_2FC850(v959, v725);
+  LOBYTE(v970) = 115;
+  std::string::~string(v960);
+  LOBYTE(v970) = 114;
+  std::string::~string(v959);
+  v13 = v961;
+}

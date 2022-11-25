@@ -1,0 +1,27 @@
+material ElectricZoneGround {
+    receive_shadows off
+	technique Default {
+		// stuff that shows through when hidden behind walls and roofs
+		pass Basic {
+			lighting off
+			//ambient 1.0 1.0 1.0 1.0
+			//diffuse 1.0 1.0 1.0 1.0 
+			//lighting on
+			ambient vertexcolour
+			diffuse vertexcolour
+
+			cull_hardware none
+			cull_software none        
+			//alpha_rejection greater 32
+			scene_blend alpha_blend
+
+			depth_write off
+            depth_check off
+
+			texture_unit Image {
+				texture electric_zone.png
+				tex_address_mode border
+			}
+		} 
+	}
+}

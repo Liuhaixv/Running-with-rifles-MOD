@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<call name="Satellite spotting" key="electric_zone_test.call"
+      initiation_comment1="electric_zone_test"
+      initiation_comment2="Scanning area for strategic targets."
+      acknowledge_comment="Scanning area, open your maps, soldiers!"
+      launch_comment="electric_zone_test launched"
+      notify_metagame="1">
+
+    <round launch_time="0.0"
+           spawn_time="60.0">
+    </round>
+
+    <hud_icon filename="hud_laptop_gps.png" />
+    <capacity value="1000000" source="rank" source_value="0.0" />
+    <inventory encumbrance="0.0" price="0.0" />
+
+</call>

@@ -47,6 +47,8 @@
 #include "vehicles_debug.as"
 #include "turret_handler.as"
 
+#include "electric_zone.as"
+
 // --------------------------------------------
 class GameModeInvasion : GameMode, UnlockRemoveListener, UnlockListener {
 	protected MapRotatorInvasion@ m_mapRotator;
@@ -348,6 +350,9 @@ class GameModeInvasion : GameMode, UnlockRemoveListener, UnlockListener {
 		addTracker(SpawnCommandHandler(this));
 		addTracker(VehiclesDebug(this));
 		addTracker(TurretHandler(this));
+
+		//TODO: test electric zone
+		addTracker(ElectricZone(this));
 	}
 
 	// --------------------------------------------
@@ -507,6 +512,7 @@ class GameModeInvasion : GameMode, UnlockRemoveListener, UnlockListener {
 	protected void setupCallMarkers() {
 		// if you're adding a call here, make sure it has notify_metagame="1" in it's <call> tag
 		array<CallMarkerConfig@> configs = {
+			//CallMarkerConfig(string key, string typeKey, int atlasIndex = 0, float size = 2.0, float range = 1.0, string text = "")
 			//CallMarkerConfig(string key, int atlasIndex = 0, float size = 2.0, float range = 1.0, string text = "")
 			CallMarkerConfig("mortar1.call", "call_marker", 6, 0.5, 30.0),
 //			CallMarkerConfig("mortar2.call", "call_marker", 7, 0.5, 50.0),            // remplaced in 1.77 with cluster bomb
@@ -526,11 +532,15 @@ class GameModeInvasion : GameMode, UnlockRemoveListener, UnlockListener {
 			CallMarkerConfig("tank.call", "call_marker_drop", 12, 0.5),
 			CallMarkerConfig("tank_alt.call", "call_marker_drop", 12, 0.5),
 			CallMarkerConfig("cover_drop.call", "call_marker_drop", 13, 0.5),
+
             //CallMarkerConfig("a10_gun_run.call", "call_marker", 4, 0.5) //handled in a10_gun_run.as
             CallMarkerConfig("gunship_run.call", "call_marker", 4, 0.5, 58),
 			CallMarkerConfig("gunship_run2.call", "call_marker", 4, 0.5, 58),
 			CallMarkerConfig("rubber_boat.call", "call_marker_drop", 12, 0.5),
-			CallMarkerConfig("rubber_boat_alt.call", "call_marker_drop", 12, 0.5)
+			CallMarkerConfig("rubber_boat_alt.call", "call_marker_drop", 12, 0.5),
+
+			// test ElectricZone material
+			CallMarkerConfig("electric_zone_test.call", "electric_zone", 2, 0.5, 1)
 			};
 
 		addTracker(CallMarkerTracker(this, configs));

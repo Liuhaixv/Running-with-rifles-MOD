@@ -1,0 +1,9 @@
+/_log_camera
+打印玩家相机
+19:39:16: camera: position="897 49 658" look_at="892 19 640"
+19:39:16: SCRIPT:  received: TagName=query_result query_id=17     TagName=player aim_target=897.47 18.1868 631.67 character_id=107 color=0.68 0.85 0 1 faction_id=0 name=MR. GREEN player_id=0 profile_hash=ID3446646883 sid=ID0 
+
+/_execute
+/_TEST
+/_start_script
+/_restart_script /_rs
