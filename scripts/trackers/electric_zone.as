@@ -27,7 +27,8 @@ class ElectricZone : Tracker {
   //毒圈当前范围
   protected float current_range = init_range;
 
-  protected int markerId = 10000;
+  protected int init_markerId = 10000;
+  protected int markerId = init_markerId;
 
   //update计时器,用于判断是否应该更新毒圈
   protected float m_timer = update_interval;
@@ -65,11 +66,22 @@ class ElectricZone : Tracker {
                 return;
             }
 
-            updateGroundMarker(current_range, center);
-            updateMapViewMarker(current_range, center);
+            // Vector3 offset(rand(-5,5), rand(-5,5), rand(-5,5));
+            Vector3 offset(0, 0, 0);
+
+            updateGroundMarker(markerId, current_range, center.add(offset));
+            updateMapViewMarker(markerId, current_range, center.add(offset));
+            
+            //删除之前的标记，释放资源
+            // Remove markers used before
+            if(markerId % 2 == init_markerId % 2 && markerId != init_markerId) {
+                disableMarker(markerId - 1);
+                disableMarker(markerId - 2);
+            }
 
             //更新当前毒圈范围
             current_range -= range_reduced_when_updated;
+            markerId++;
         } else {
             //未到缩圈的更新时间
             //not the time to update the range
@@ -78,14 +90,14 @@ class ElectricZone : Tracker {
 	}
 
     //TODO: 更新毒圈在游戏内地面上的material
-    protected void updateGroundMarker(float range, Vector3@ center) {
+    protected void updateGroundMarker(int id, float range, Vector3@ center) {
         _log("当前毒圈范围:" + range);
 
         // place the marker
         XmlElement command("command");
 
         command.setStringAttribute("class", "set_marker");
-        command.setIntAttribute("id", markerId);
+        command.setIntAttribute("id", id);
         command.setIntAttribute("faction_id", 0);
         command.setIntAttribute("atlas_index", 2);
         command.setFloatAttribute("size", 0.5);
@@ -102,8 +114,19 @@ class ElectricZone : Tracker {
     }
     
     //TODO: 更新毒圈在游戏内地图上的material
-    protected void updateMapViewMarker(float range, Vector3@ center) {
+    protected void updateMapViewMarker(int id, float range, Vector3@ center) {
 
+    }
+
+    protected void disableMarker(int id) {
+        XmlElement command("command");
+
+        command.setStringAttribute("class", "set_marker");
+        command.setIntAttribute("id", id);
+		command.setIntAttribute("faction_id", 0);
+        command.setIntAttribute("enabled", 0);
+
+        m_metagame.getComms().send(command);
     }
 
     void enableElectricZone() {

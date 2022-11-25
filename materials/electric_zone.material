@@ -3,12 +3,12 @@ material ElectricZoneGround {
 	technique Default {
 		// stuff that shows through when hidden behind walls and roofs
 		pass Basic {
-			lighting off
-			//ambient 1.0 1.0 1.0 1.0
+			lighting ON
+			emissive  0.133 0.247 0.552 1.00
 			//diffuse 1.0 1.0 1.0 1.0 
 			//lighting on
-			ambient vertexcolour
-			diffuse vertexcolour
+			// ambient vertexcolour
+			// diffuse vertexcolour
 
 			cull_hardware none
 			cull_software none        
