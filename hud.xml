@@ -27,7 +27,8 @@
 	<comms_marker key="call_marker_gunship" mask_rect="0.4375 0.044921875 0.5625 0.169921875" flag_material="CommsMarkerFlagCall" ground_material="CommsMarkerGroundCallGunship" size="9.0" />
 
     <!-- test ElectricZone material -->
-    <comms_marker key="electric_zone" mask_rect="0.4375 0.044921875 0.5625 0.169921875" flag_material="CommsMarkerFlagCall" ground_material="ElectricZoneGround" size="9.0" />
+	<!-- <comms_marker key="electric_zone" mask_rect="0.4375 0.044921875 0.5625 0.169921875" flag_material="CommsMarkerFlagCall" ground_material="ElectricZoneGround" size="9.0" /> -->
+    <comms_marker key="electric_zone" mask_rect="0.109375 0.01123046875 0.140625 0.04248046875" flag_material="CommsMarkerFlagCall" ground_material="ElectricZoneGround" size="9.0" />
 
 	<end_view play_victory_soundtrack="1" />
 </hud>
