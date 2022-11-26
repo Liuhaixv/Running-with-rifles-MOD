@@ -3,6 +3,12 @@
 Currently still in development yet..
 
 ---
+## In Progress进展中项目
+### 1.毒圈
+Electric zone
+
+---
+
 ## Completed work已完成的项目
 ### 1. Tracking grenade追踪手雷
 Fire multi grenades aiming at enemies when explode.
